@@ -1,0 +1,70 @@
+<html>
+  <head>
+<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+
+
+<!-- End Wayback Rewrite JS Include -->
+    <meta name="robots" content="index, all"/>
+    <script src="http://www.webglearth.com/v2/api.js"></script>
+    <title>WebGL Earth API - Advanced API demo</title>
+    <script>
+      SC.initialize({
+        client_id: 'X212L4OU3ILVpQRkDAfgWuT206gb0fmp',
+
+    });
+
+
+      var map;
+      function init() {
+        map = WE.map('map', {
+          center: [36.057944835, -112.18688965],
+          zoom: 1,
+          dragging: true,
+          scrollWheelZoom: true,
+  
+        });
+
+        var baselayer = WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+      }
+
+      
+      function setZoom(zoom) {
+        map.setZoom(zoom);
+      }
+
+
+      function panTo() {
+        var x = Math.random();
+        var y = Math.random();
+        x-=0.5;
+        y-=0.5;
+        x*=100;
+        y*=100;
+        console.log(x);
+        console.log(y);
+        map.panTo([x,y]);
+        new Audio('./ganymede.mp3').play()
+
+
+      }
+    </script>
+    <style>
+      html, body{padding: 0; margin: 0;}
+      #map{top: 0; right: 0; bottom: 0; left: 0; background-color: #000; position: absolute !important;}
+      #coords{position: absolute; bottom: 10px; right: 10px; z-index: 100000;}
+      #buttons {position: absolute; top:10px; left: 10px;}
+      #layercontrol{position: absolute; top:10px; right: 10px;}
+    </style>
+  </head>
+  <body onload="init()">
+    <div id="map"></div>
+    <div id="buttons">
+     
+      <input type="button" value="Space Me!" onclick="panTo();"><br>
+      
+    </div>
+    
+  </body>
+</html>
